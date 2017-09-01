@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Dinner and a Movie
+    </title>
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+
+
+    <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+
+    <link rel='stylesheet' type='text/css' href='./assets/css/style.css'/>
+
+
+
+
+
+</head>
+
+<body>
+
+    <input type='text' id='textInput'> <button value='submit' id='citySearch'>GO!</button>
+
+    <br>
+
+    <div id="map"></div>
+    <div id="geocode"></div>
+    <input id="address" type="textbox" value="Sydney, NSW">
+    <input id="submit" type="button" value="Geocode">
+    <div id="player"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpHpITgeqNeGvTeOykmiM4Y_P_QLHEvJY&libraries=places&callback=initMap" async defer></script>
+
+
+    <script src='./assets/javascript/app.js'></script>
+
+</body>
+
+</html>
