@@ -1,15 +1,17 @@
 var userSearch = '';
 
 
-function getLocation(url) {
+function getLocation() {
   $.ajax({
-    url: url,
-    method: 'GET'
-  }).done(function(response){
-    var results = response.data;
-    console.log(results);
-  })
-}
+    url: 'http://www.mapquestapi.com/geocoding/v1/address?key=ySnFWLf3jumt1VVFoT9kSA6H2qlYX11m&location=San+Francisco,CA',
+    method: 'GET',
+    dataType: 'json',
+    success: function(response){
+      console.log(response.data);
+  }
+})};
+
+getLocation();
 
 
 $('#citySearch').on('click', function() {
@@ -23,52 +25,22 @@ $('#citySearch').on('click', function() {
 });
 
 
-//GOOGLE GEOCODING API
-function initialMap() {
-  var map = new google.maps.Map(document.getElementById('geocode'), {
-    zoom: 8,
-    center: {lat: -34.397, lng: 150.644}
-  });
-  var geocoder = new google.maps.Geocoder();
-
-  document.getElementById('citySearch').addEventListener('click', function() {
-    geocodeAddress(geocoder, map);
-  });
-}
-
-function geocodeAddress(geocoder, resultsMap) {
-  var address = document.getElementById('address').value;
-  geocoder.geocode({'address': address}, function(results, status) {
-    if (status === 'OK') {
-      resultsMap.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-
-}
-
-
 // GOOGLE PLACES API
 var map;
 var infowindow;
 
 function initMap() {
-  var pyrmont = {lat: -33.867, lng: 151.195};
+  var sanFrancisco = {lat: 37.775, lng: -122.419};
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: pyrmont,
-    zoom: 15
+    center: sanFrancisco,
+    zoom: 12
   });
 
   infowindow = new google.maps.InfoWindow();
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
-    location: pyrmont,
+    location: sanFrancisco,
     radius: 500,
     type: ['store']
   }, callback);
