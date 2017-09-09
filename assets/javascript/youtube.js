@@ -2,6 +2,7 @@ $(function() {
 
     var q = "";
 
+    //creates search function for youtube using eventful event names
     DN.search = function(list) {
 
         $("#results").html("");
@@ -27,6 +28,7 @@ $(function() {
         });
     };
 
+    //creates list of youtube videos to display
     function getOutput(item) {
         var videoId = item.id.videoId;
         var title = item.snippet.title;
