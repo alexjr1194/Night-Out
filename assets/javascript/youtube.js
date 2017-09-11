@@ -30,18 +30,17 @@ $(function() {
 
     //creates list of youtube videos to display
     function getOutput(item) {
-        var videoId = item.id.videoId;
+        var link = 'https://www.youtube.com/watch?v=' + item.id.videoId;
         var title = item.snippet.title;
-        var description = item.snippet.discription;
+        var description = item.snippet.description;
         var thumb = item.snippet.thumbnails.high.url;
         var channelTitle = item.snippet.channelTitle;
         var videoDate = item.snippet.publishedAt;
 
 
-
         var output = '<li>' +
         '<div class="list-left">' +
-        '<img src="' + thumb + '">' +
+        '<a href="' + link + '" target="_blank"><img src="' + thumb + '"/></a>' +
         '</div>' +
         '<div class="list-right">'+
         '<h3>' + title+ '</h3>'+

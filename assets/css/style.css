@@ -1,8 +1,7 @@
-#map {
-        height: 50%;
-      }
-html, body {
-height: 100%;
-margin: 0;
-padding: 0;
+h1.display-3 {
+    text-align: center;
+}
+
+p.lead {
+    text-align: center;
 }
