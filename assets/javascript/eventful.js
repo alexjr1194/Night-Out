@@ -18,7 +18,6 @@ var DN = {
    //used to help EVDB API call reference DN scope
    var self = this;
 
-
    //eventful API function, loops over each event, gets the info, returns
    //the title from each event (map function)
    EVDB.API.call("/events/search", oArgs, function(oData) {
@@ -30,6 +29,15 @@ var DN = {
       var newData = self.data.map(function(event, index) {
         return event[0];
       });
+
+      console.log(DN.data);
+
+      for (var x in DN.data) {
+        var newElement = document.createElement('div');
+        newElement.id = DN.data[x]; newElement.className = "eventLocation";
+        newElement.innerHTML = DN.data[x];
+        $('#eventLocation').append(newElement);
+      } 
 
       //calls youtube search function from youtube.js
       DN.search(newData);
