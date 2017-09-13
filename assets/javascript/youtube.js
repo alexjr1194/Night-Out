@@ -7,49 +7,28 @@ $(function() {
 
         $("#results").html("");
 
+        var promises = [];
 
         $.each(list, function(index, title) {
-            $.get(
+            promises.push($.get(
             "https://www.googleapis.com/youtube/v3/search",{
                 part:'snippet, id',
                 q: title,
                 type: 'video',
-                maxResults: 2,
+                maxResults: '1',
                 key: 'AIzaSyCj4YymhzXyuUv5yC88T2EQ_apysoUeUmg'
             }, function(data){
 
                 $.each(data.items, function(i, item) {
-                    var output = getOutput(item);
-                    $("#results").append(output);
-
-                })
+                    var thumb = '<a href="https://www.youtube.com/watch?v=' + item.id.videoId + '" target="_blank"><img src="' + item.snippet.thumbnails.high.url + '"></a>';
+                    DN.data[index].push(thumb);
+                });
             }
-        );
+        ).promise());
         });
+
+        Promise.all(promises).then(function() {
+            DN.make_table();
+        })
     };
-
-    //creates list of youtube videos to display
-    function getOutput(item) {
-        var link = 'https://www.youtube.com/watch?v=' + item.id.videoId;
-        var title = item.snippet.title;
-        var description = item.snippet.description;
-        var thumb = item.snippet.thumbnails.high.url;
-        var channelTitle = item.snippet.channelTitle;
-        var videoDate = item.snippet.publishedAt;
-
-
-        var output = '<li>' +
-        '<div class="list-left">' +
-        '<a href="' + link + '" target="_blank"><img src="' + thumb + '"/></a>' +
-        '</div>' +
-        '<div class="list-right">'+
-        '<h3>' + title+ '</h3>'+
-        '<small>By <span class="cTitle">' +channelTitle+ '</span> on '+videoDate+'</small>'+
-        '<p>'+description+'</p>'+
-        '</div>'+
-        '</li>'+
-        '<div class="clearFix"></div>'+ ''
-        ;
-        return output
-    }
 })

@@ -1,43 +1,61 @@
 var DN = {
   data: [],
 
+  make_table: function() {
+    var html = '';
+
+    $.each(this.data, function(i, value) {
+      html += '<tr>';
+
+      $.each(value, function(j, category){
+        html += '<td>' + category + '</td>';
+      });
+
+      html += '</tr>';
+
+    });
+
+    $('#eventResults').html(html);
+  },
+
   //eventful API, returns 10 events near area searched
   get_events: function() {
-   var where   = document.getElementById("where");
-   var query   = document.getElementById("query");
-   var oArgs = {
-      app_key: "LvNQGQZt7rxqzb3c",
-      q: query.value,
-      where: where.value,
-      "date": "future",
-      "include": "tags,categories",
-      page_size: 10,
-      sort_order: "relevance",
-   };
+    var where   = document.getElementById("where");
+    var query   = document.getElementById("query");
+    var oArgs = {
+       app_key: "LvNQGQZt7rxqzb3c",
+       q: query.value,
+       where: where.value,
+       "date": "future",
+       "include": "tags,categories",
+       page_size: 10,
+       sort_order: "relevance",
+    };
 
-   //used to help EVDB API call reference DN scope
-   var self = this;
+    //used to help EVDB API call reference DN scope
+    var self = this;
+ 
+    //eventful API function, loops over each event, gets the info, returns
+    //the title from each event (map function)
+    EVDB.API.call("/events/search", oArgs, function(oData) {
 
-
-   //eventful API function, loops over each event, gets the info, returns
-   //the title from each event (map function)
-   EVDB.API.call("/events/search", oArgs, function(oData) {
+      self.data = [];
 
       $.each(oData.events.event, function(i, event){
         self.eventInfo(event);
       });
-
+ 
       var newData = self.data.map(function(event, index) {
         return event[0];
       });
-
+ 
       //calls youtube search function from youtube.js
       DN.search(newData);
-
-    });
-
-      //calls weatherInfo function from below
-      DN.weatherInfo();
+ 
+     });
+ 
+       //calls weatherInfo function from below
+       DN.weatherInfo();
   },
 
 
@@ -50,7 +68,8 @@ var DN = {
       event.stop_time,
       event.venue_name,
       event.venue_address,
-      event.url
+      '<td><a href="' + event.url + '" target="_blank"> link </a></td>',
+
     ]);
   },
 

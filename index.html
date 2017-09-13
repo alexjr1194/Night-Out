@@ -46,19 +46,40 @@
         <label for="location">Location (City) </label>
         <input id="where" type="text" name="where" />
       </div>
-      <input id='eventSearch' type="button" onclick="DN.get_events()" value=" Lookup " />
+      <input id='eventSearch' type="button" onclick="DN.get_events()" value="Lookup" />
     </form>
 
     <!-- weather -->
     <div id='weatherInfo'></div>
 
 
-
-
     <!-- youtube-->
     <div id="buttons">
       <div id="youtubeSearch">
-        <ul id="results"></ul>
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Event Title</th>
+              <th>City</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Venue</th>
+              <th>Address</th>
+              <th>Event Link</th>
+              <th>Video</th>
+            </tr>
+          </thead>
+          <tbody id="eventResults">
+            
+          </tbody>
+        </table>
+      </div>
+         <div>
+          <ul id="results">
+            
+          </ul>
+        </div>
       </div>
     </div>
 
