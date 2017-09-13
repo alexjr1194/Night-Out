@@ -16,6 +16,7 @@ var DN = {
     });
 
     $('#eventResults').html(html);
+    console.log(html);
   },
 
   //eventful API, returns 10 events near area searched
@@ -34,7 +35,7 @@ var DN = {
 
     //used to help EVDB API call reference DN scope
     var self = this;
- 
+
     //eventful API function, loops over each event, gets the info, returns
     //the title from each event (map function)
     EVDB.API.call("/events/search", oArgs, function(oData) {
@@ -44,18 +45,18 @@ var DN = {
       $.each(oData.events.event, function(i, event){
         self.eventInfo(event);
       });
- 
+
       var newData = self.data.map(function(event, index) {
         return event[0];
       });
- 
+
       //calls youtube search function from youtube.js
       DN.search(newData);
- 
-     });
- 
-       //calls weatherInfo function from below
-       DN.weatherInfo();
+
+    });
+
+    //calls weatherInfo function from below
+    DN.weatherInfo();
   },
 
 
@@ -68,8 +69,7 @@ var DN = {
       event.stop_time,
       event.venue_name,
       event.venue_address,
-      '<td><a href="' + event.url + '" target="_blank"> link </a></td>',
-
+      '<a href="' + event.url + '" target="_blank"> link </a>'
     ]);
   },
 
@@ -85,12 +85,11 @@ var DN = {
       url: queryURL,
     }).done(function( response ) {
       $('#weatherInfo').html(
-          '<h2> Weather For ' + where.value + ": </h2> <h3>" +
-          response.main.temp + "°F, " +
-          response.weather[0].description +
-          ", Wind: " + response.wind.speed + " mph </h3>"
-        );
-
+        '<h2> Weather For ' + where.value + ": </h2> <h3>" +
+        response.main.temp + "°F, " +
+        response.weather[0].description +
+        ", Wind: " + response.wind.speed + " mph </h3>"
+      );
     })
   }
 

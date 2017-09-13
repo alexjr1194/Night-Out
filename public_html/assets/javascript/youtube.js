@@ -11,7 +11,7 @@ $(function() {
 
         $.each(list, function(index, title) {
             promises.push($.get(
-            "https://www.googleapis.com/youtube/v3/search",{
+            "https://www.googleapis.com/youtube/v3/search", {
                 part:'snippet, id',
                 q: title,
                 type: 'video',
@@ -23,8 +23,7 @@ $(function() {
                     var thumb = '<a href="https://www.youtube.com/watch?v=' + item.id.videoId + '" target="_blank"><img src="' + item.snippet.thumbnails.high.url + '"></a>';
                     DN.data[index].push(thumb);
                 });
-            }
-        ).promise());
+            }).promise());
         });
 
         Promise.all(promises).then(function() {
