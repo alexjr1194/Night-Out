@@ -10,7 +10,7 @@ var DN = {
       q: query.value,
       where: where.value,
       "date": "future",
-      "include": "tags,categories",
+      /*"include": "tags,categories",*/
       page_size: 10,
       sort_order: "relevance",
    };
@@ -30,11 +30,12 @@ var DN = {
         return event[0];
       });
 
+      //gets the eventful data so their not all listed as one element
       console.log(DN.data);
 
       for (var x in DN.data) {
         var newElement = document.createElement('div');
-        newElement.id = DN.data[x]; newElement.className = "eventLocation";
+        newElement.id = DN.data[x]; newElement.className = "eventA";
         newElement.innerHTML = DN.data[x];
         $('#eventLocation').append(newElement);
       } 
@@ -82,5 +83,36 @@ var DN = {
 
     })
   }
-
 }
+  //simple google maps function
+/*  function myMap() {
+    var mapProp= {
+    center:new google.maps.LatLng(51.508742,-0.120850),
+    zoom:5,
+  };
+    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  }*/
+var map; 
+function initMap() { 
+  map = new google.maps.Map(document.getElementById('map'), { 
+    zoom: 2, 
+    center: new google.maps.LatLng(37.8716,122.2727), 
+    mapTypeId: 'terrain' 
+  });
+  var mapLoc = DN.data[5];
+  $.each(DN.data, function(index, value) { 
+    console.log(value[5]); 
+    $("#map").append(value[5]);
+  })
+};
+
+window.eqfeed_callback = function(results) {
+  for (var i = 0; i < results.features.length; i++) {
+    var coords = results.features[i].geometry.coordinates;
+    var latLng = new google.maps.LatLng(coords[1],coords[0]);
+    var marker = new google.maps.Marker({
+      position: latLng,
+      map: map
+    });
+  }
+};

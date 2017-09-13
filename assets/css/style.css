@@ -6,3 +6,16 @@ height: 100%;
 margin: 0;
 padding: 0;
 }
+
+.eventA {
+	font-weight: bold;
+	border-width: 2px;
+	border-style: solid;
+	border-color: blue;
+	box-sizing: border-box;
+	padding: 1%;
+}
+
+#map {
+	height: 300px;
+} 
