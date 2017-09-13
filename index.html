@@ -1,93 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>
-    Do Something!
-  </title>
+<pre><code>git clone https://github.com/alexjr1194/Project1.git
+cd Project1
 
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
+### On first run
+sudo npm i -g http-server
 
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+### To run local server
+npm start
 
-    <link rel='stylesheet' type='text/css' href='./assets/css/style.css'/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://api.eventful.com/js/api"></script>
-    <script src='./assets/javascript/eventful.js' type="text/javascript"></script>
-    <script src='./assets/javascript/youtube.js' type="text/javascript"></script>
+### Open localhost in Google Chrome
+http://localhost
 
-</head>
-
-<body>
-  <div class="container">
-
-    <div class="row">
-      <header class="col-md-12">
-        <div class="jumbotron jumbotron-fluid">
-          <div class="container">
-            <h1 class="display-3">Do Something!</h1>
-            <p class="lead">Bored??! Find something to do!!! Just type in
-            something you enjoy, like 'beach' or 'music', and the city you
-            want to hang out in, and we'll help you find cool events
-            in the area. We'll even help you find some videos of the event so you
-            can get an idea of what to expect. Try it out!</p>
-          </div>
-        </div>
-      </header>
-    </div>
-
-    <form>
-      <div class="searchBoxContainer">
-        <header class="tableBoxHeader"><p>What's Around...</p></header>
-        <label for="event">Interest </label>
-        <input id="query" type="text" name="query" />
-        <br>
-        <label for="location">Location (City) </label>
-        <input id="where" type="text" name="where" />
-      </div>
-      <input id='eventSearch' type="button" onclick="DN.get_events()" value="Lookup" />
-    </form>
-
-    <!-- weather -->
-    <div id='weatherInfo'></div>
-
-
-    <!-- youtube-->
-    <div id="buttons">
-      <div id="youtubeSearch">
-      <div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Event Title</th>
-              <th>City</th>
-              <th>Start Time</th>
-              <th>End Time</th>
-              <th>Venue</th>
-              <th>Address</th>
-              <th>Event Link</th>
-              <th>Video</th>
-            </tr>
-          </thead>
-          <tbody id="eventResults">
-            
-          </tbody>
-        </table>
-      </div>
-         <div>
-          <ul id="results">
-            
-          </ul>
-        </div>
-      </div>
-    </div>
-
-  </div> <!-- container div -->
-
-  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-</body>
-
-</html>
+### To stop the local server, press Ctrl-C in the terminal window</code></pre>
