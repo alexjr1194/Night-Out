@@ -62,6 +62,11 @@ var DN = {
 
   //retrieves desired event info from eventful API
   eventInfo: function(event) {
+
+    if (event.stop_time == null) {
+      event.stop_time = 'All Day!';
+    }
+
     this.data.push([
       event.title,
       event.city_name,
@@ -69,7 +74,7 @@ var DN = {
       event.stop_time,
       event.venue_name,
       event.venue_address,
-      '<a href="' + event.url + '" target="_blank"> link </a>'
+      '<a href="' + event.url + '" target="_blank"> Check it out! </a>'
     ]);
   },
 
@@ -85,10 +90,10 @@ var DN = {
       url: queryURL,
     }).done(function( response ) {
       $('#weatherInfo').html(
-        '<h2> Weather For ' + where.value + ": </h2> <h3>" +
+        '<h2> The current weather for ' + where.value + " is: </h2> <h3> <b>" +
         response.main.temp + "°F, " +
         response.weather[0].description +
-        ", Wind: " + response.wind.speed + " mph </h3>"
+        ", Wind: " + response.wind.speed + " mph </h3> </b>"
       );
     })
   }
