@@ -5,7 +5,7 @@ body, html {
 /* The concert image */
 .concert-image {
     /* The image used */
-    background-image: url("NightOut_thick_concert.png");
+    background-image: url("../images/NightOut_thick_concert.png");
 
     /* Set a specific height */
     height: 80%;
